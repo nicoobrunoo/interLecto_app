@@ -44,3 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMatches();
   renderMyBooks();
 });
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/interLecto_app/sw.js", { scope: "/interLecto_app/" })
+      .catch(console.error);
+  });
+}
+
+// (opcional) loguea el modo para verificar
+window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+  console.log('display-mode:', e.matches ? 'standalone' : 'browser');
+});
+
